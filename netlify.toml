@@ -1,6 +1,6 @@
 [build]
-  command = "npm ci && npm run build:web -w investor"
-  publish = "investor/dist"
+  command = "npm ci && npm run build:web"
+  publish = "investor"
 
 [[redirects]]
   from = "/*"
