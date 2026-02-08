@@ -1,0 +1,11 @@
+{
+    "name": "@niveshstar/hook",
+    "version": "0.0.1",
+    "description": "hooks for nivesh start hybrid application",
+    "main": "./index.ts",
+    "dependencies": {
+        "@niveshstar/ui": "*",
+        "@niveshstar/context": "*",
+        "@niveshstar/utils": "*"
+    }
+}

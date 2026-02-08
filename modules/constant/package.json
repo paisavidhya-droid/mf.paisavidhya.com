@@ -1,0 +1,6 @@
+{
+    "name": "@niveshstar/constant",
+    "version": "0.0.1",
+    "description": "constant for nivesh start hybrid application",
+    "main": "./index.ts"
+}

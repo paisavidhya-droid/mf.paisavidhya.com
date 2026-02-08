@@ -1,0 +1,153 @@
+{
+  "count": 20,
+  "pages": 3,
+  "results": [
+    {
+      "product": {
+        "id": "MF_21521",
+        "name": "Parag Parikh Flexi Cap Fund(G)-Direct Plan",
+        "category": "Market Cap Fund",
+        "subcategory": "Flexi Cap Fund",
+        "isin": "INF879O01027",
+        "rta_code": "PP001ZG",
+        "asset_type": "E",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "83.0488",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "24277.683",
+      "market_value": "2016232.44",
+      "amount": "1400473.00",
+      "initial_transaction_date": "2020-04-15"
+    },
+    {
+      "product": {
+        "id": "MF_18390",
+        "name": "SBI Small Cap Fund(G)-Direct Plan",
+        "category": "Market Cap Fund",
+        "subcategory": "Small cap Fund",
+        "isin": "INF200K01T51",
+        "rta_code": "LD346G",
+        "asset_type": "E",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "170.4450",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "1945.511",
+      "market_value": "331602.62",
+      "amount": "243028.70",
+      "initial_transaction_date": "2020-11-05"
+    },
+    {
+      "product": {
+        "id": "MF_33230",
+        "name": "Mirae Asset Aggressive Hybrid Fund(G)-Direct Plan",
+        "category": "Aggressive Hybrid Fund",
+        "subcategory": "",
+        "isin": "INF769K01DH9",
+        "rta_code": "117PFD1",
+        "asset_type": "M",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "33.2550",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "7816.054",
+      "market_value": "259922.88",
+      "amount": "184983.21",
+      "initial_transaction_date": "2020-11-05"
+    },
+    {
+      "product": {
+        "id": "MF_24804",
+        "name": "HDFC Retirement Savings Fund-Equity Plan(G)-Direct Plan",
+        "category": "Solution Oriented - Retirement Fund",
+        "subcategory": "Equity Oriented",
+        "isin": "INF179KB1MF0",
+        "rta_code": "HHREDP",
+        "asset_type": "O",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "50.5270",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "3773.722",
+      "market_value": "190674.85",
+      "amount": "131000.00",
+      "initial_transaction_date": "2023-03-10"
+    },
+    {
+      "product": {
+        "id": "MF_24657",
+        "name": "Axis Small Cap Fund(G)-Direct Plan",
+        "category": "Market Cap Fund",
+        "subcategory": "Small cap Fund",
+        "isin": "INF846K01HS3",
+        "rta_code": "128SCDG",
+        "asset_type": "E",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "104.2600",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "927.032",
+      "market_value": "96652.36",
+      "amount": "86128.50",
+      "initial_transaction_date": "2022-04-07"
+    },
+    {
+      "product": {
+        "id": "MF_42352",
+        "name": "Canara Rob Small Cap Fund(G)-Direct Plan",
+        "category": "Market Cap Fund",
+        "subcategory": "Small cap Fund",
+        "isin": "INF760K01JC6",
+        "rta_code": "101SCDG",
+        "asset_type": "E",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "35.9200",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "1654.621",
+      "market_value": "59433.99",
+      "amount": "46637.86",
+      "initial_transaction_date": "2022-09-26"
+    },
+    {
+      "product": {
+        "id": "MF_18194",
+        "name": "Axis Midcap Fund(G)-Direct Plan",
+        "category": "Market Cap Fund",
+        "subcategory": "Mid Cap Fund",
+        "isin": "INF846K01EH3",
+        "rta_code": "128MCDG",
+        "asset_type": "E",
+        "product_type": "MF",
+        "plan_type": "DCT",
+        "option_type": "G",
+        "nav": "110.8100",
+        "nav_date": "2025-03-13",
+        "organization": null
+      },
+      "quantity": "532.468",
+      "market_value": "59002.78",
+      "amount": "44578.45",
+      "initial_transaction_date": "2020-04-22"
+    }
+  ]
+}

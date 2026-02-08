@@ -1,0 +1,49 @@
+{
+  "equity_cagr": 0.17172028873750658,
+  "equity_bm_cagr": 0.12287899971008301,
+  "equity_category_allocation": {
+    "Flexi Cap": 0.7132812033302944,
+    "Small cap": 0.17251042629552785,
+    "Aggressive Hybrid": 0.07117003209450393,
+    "Large & Mid Cap": 0.021638199427621466,
+    "Others": 0.021400138852052393
+  },
+  "equity_product_allocation": {
+    "Mutual Fund": 1
+  },
+  "full_sector_allocation": {
+    "Financials": [0.3722902640237908, 0.303765735784618],
+    "Consumer Discretionary": [0.14199997738294487, 0.09935325554225695],
+    "Materials": [0.09759448494216107, 0.08833844364617217],
+    "Information Technology": [0.08199631328799563, 0.11880815306335467],
+    "Utilities": [0.06947865429680941, 0.03522403416286521],
+    "Consumer Staples": [0.06811759711973621, 0.07057128344283624],
+    "Health Care": [0.06715094111597564, 0.062123203325229255],
+    "Industrials": [0.05929320126416818, 0.10003808376409493],
+    "Energy": [0.021096583942389405, 0.07470503570090566],
+    "Real Estate": [0.011601104786957998, 0.013775909775755485],
+    "Communication Services": [0.009380877837070868, 0.03329686179191156]
+  },
+  "geographical_allocation": {
+    "Domestic Equities": 0.8881200395204576,
+    "Overseas Equities": 0.1118799604795424
+  },
+  "equity_products_count": 17,
+  "debt_cagr": 0.12247525483530727,
+  "debt_bm_cagr": 0.06278900146484374,
+  "debt_category_allocation": {
+    "Liquid": 0.0013704854029857447,
+    "Equity": 0.2719396681953024,
+    "Aggressive Hybrid": 0.7266898464017117
+  },
+  "debt_product_allocation": {
+    "Mutual Fund": 1
+  },
+  "debt_products_count": 1,
+  "alternate_cagr": 0,
+  "alternate_bm_cagr": 0.13668100357055665,
+  "alternate_category_allocation": {},
+  "alternate_product_allocation": {},
+  "alternate_products_count": 0,
+  "missing": ["MF_1110"]
+}

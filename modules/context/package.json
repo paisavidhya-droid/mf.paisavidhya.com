@@ -1,0 +1,10 @@
+{
+    "name": "@niveshstar/context",
+    "version": "0.0.1",
+    "description": "context for nivesh start hybrid application",
+    "main": "./index.ts",
+    "dependencies": {
+        "@niveshstar/constant": "*",
+        "@niveshstar/utils": "*"
+    }
+}

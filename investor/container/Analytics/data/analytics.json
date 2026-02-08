@@ -1,0 +1,66 @@
+{
+  "asset_allocation": {
+    "Equity": 0.974,
+    "Debt": 0.026,
+    "Alternate": 0
+  },
+  "product_allocation": {
+    "Mutual Fund": 1
+  },
+  "port_return": 0.17286175009423144,
+  "bm_blended_return": 0.12130061977317526,
+  "total_products": 20,
+  "liquidity": 0.9999999382419407,
+  "market_cap": {
+    "Large Cap": [0.7017080583805723, 0.7326342406960973],
+    "Mid Cap": [0.09204404738227202, 0.17183984292400542],
+    "Small Cap": [0.2062478942371558, 0.09552591637989719]
+  },
+  "top5_sector": {
+    "Financials": [0.37229026402379073, 0.303765735784618],
+    "Consumer Discretionary": [0.14199997738294484, 0.09935325554225695],
+    "Materials": [0.09759448494216105, 0.08833844364617217],
+    "Information Technology": [0.08199631328799561, 0.11880815306335467],
+    "Utilities": [0.0694786542968094, 0.03522403416286521]
+  },
+  "top5_stocks": {
+    "HDFC Bank Ltd.": 0.09299837680987864,
+    "Bajaj Holdings & Investment Ltd.": 0.06832900095580095,
+    "Coal India Ltd.": 0.05939768446874278,
+    "Power Grid Corporation Of India Ltd.": 0.05386835228348013,
+    "ICICI Bank Ltd.": 0.05321798228980252
+  },
+  "debt_quants": {
+    "duration": 4.108283597010126,
+    "gross_ytm": 0.07369838155549342,
+    "maturity": 7.057027172985278
+  },
+  "rating_allocation": {
+    "A": 0,
+    "AA": 0.056620301380415614,
+    "AAA": 0.31699213704694884,
+    "Cash": 0.31377007085292624,
+    "SOV": 0.3126174907197093,
+    "Others": 0
+  },
+  "top5_debt_instruments": {
+    "7.1% Government of India (08/04/2034)": 0.15067662207731827,
+    "6.79% Government of India (07/10/2034)": 0.12541477619620986,
+    "7.68% Indian Railway Finance Corporation Limited (24/11/2026)": 0.05569908412851352,
+    "7.59% Small Industries Dev Bank of India (10/02/2026)": 0.043848774897921994,
+    "7.34% Government of India (22/04/2064)": 0.0425823822150193
+  },
+  "alternate_product_categories": {},
+  "alternate_liqudity_allocation": {
+    "Liquid": 0,
+    "Semi-Liquid": 0,
+    "Illiquid": 0
+  },
+  "eq_3y_return": 0.17172028873750658,
+  "eq_3y_bm_return": 0.12287899971008301,
+  "port_1y_return": 0.10798523988458732,
+  "portfolio_value": 3076521.54,
+  "mf_portfolio_value": 3076521.54,
+  "stocks_portfolio_value": 0,
+  "missing": ["MF_1110"]
+}

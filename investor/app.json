@@ -1,0 +1,67 @@
+{
+  "expo": {
+    "name": "Paisavidhya MF",
+    "slug": "paisavidhya-mf",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "../modules/assets/icon.png",
+    "userInterfaceStyle": "light",
+    "scheme": "com.paisavidhya.mf",
+    "newArchEnabled": true,
+    "androidNavigationBar": {
+      "backgroundColor": "#f6f6f8",
+      "barStyle": "light-content"
+    },
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your gallery to upload images"
+        }
+      ],
+      [
+        "expo-document-picker",
+        {
+          "iCloudContainerEnvironment": "Production"
+        }
+      ],
+      "expo-asset",
+      "expo-build-properties",
+      "expo-font",
+      "expo-secure-store"
+    ],
+    "splash": {
+      "image": "../modules/assets/adaptive-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#b8860b"
+    },
+    "assetBundlePatterns": [
+      "**/*",
+      "../modules/assets/fonts/"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "bundleIdentifier": "com.paisavidhya.mf"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "../modules/assets/adaptive-icon.png",
+        "backgroundColor": "#b8860b"
+      },
+      "package": "com.paisavidhya.mf",
+      "permissions": []
+    },
+    "web": {
+      "favicon": "../modules/assets/favicon.png",
+      "bundler": "metro"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "35680f9d-f8a9-45ef-b5b9-3b812f0e5e12"
+      }
+    }
+  }
+}

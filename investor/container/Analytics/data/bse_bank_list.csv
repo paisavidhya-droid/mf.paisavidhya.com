@@ -1,0 +1,131 @@
+_id,ifsc,name,bseCode,mode,hasNetBanking,hasUPI,hasMandate
+6527d97d47eb507e0cd338b1,UTIB,Axis Bank,UTI,DIRECT,true,true,true
+6527d97d47eb507e0cd338b3,IBKL,IDBI Bank - Retail Net Banking,IDB,NODAL,true,true,true
+6527d97d47eb507e0cd338b4,KKBK,Kotak Bank,162,DIRECT,true,true,true
+6527d97d47eb507e0cd338b5,SBIN,State Bank of India,SBI,DIRECT,true,true,true
+6527d97d47eb507e0cd338c5,FDRL,Federal Bank,FBK,NODAL,true,true,true
+6527d97d47eb507e0cd338d4,SRCB,Saraswat Bank,SWB,NODAL,true,true,true
+6527d97d47eb507e0cd338d9,SYNB,Syndicate Bank,SYD,NODAL,true,true,true
+6527d97d47eb507e0cd338e3,CIUB,CITY UNION BANK LIMITED,CUB,NODAL,true,true,true
+6527d97d47eb507e0cd338e8,BDBL,Bandhan Bank,BDB,,false,true,true
+6527d97d47eb507e0cd338eb,ABHY,Abhyuda Cooperative,ACB,,false,true,true
+6527d97d47eb507e0cd338ee,VVSB,VVSB,VVS,,false,false,true
+6527d97d47eb507e0cd338f0,MSNU,Mehsana Urb Coop,MSN,,false,true,true
+6527d97d47eb507e0cd338f2,IDFB,IDFC Bank,IDF,,false,true,true
+6527d97d47eb507e0cd338f6,PYTM,PAYTM,PYTM,,false,true,true
+6527d97d47eb507e0cd338fb,MAHG,Maharashtra Gramin Bank,MGBX,,false,false,true
+6527d97d47eb507e0cd33900,APGB,Andhra Pragathi Grameena Bank,APG,NODAL,true,true,true
+6527d97d47eb507e0cd33903,FSFB,Fincare Small Finance Bank,FNC,NODAL,true,false,true
+6527d97d47eb507e0cd33907,KCCB,Kalupur Coop Bank,KCC,NODAL,true,false,true
+6527d97d47eb507e0cd3390b,PKGB,Pragathi Krishna Bank,PKG,NODAL,true,false,true
+6527d97d47eb507e0cd3390c,STCB,SBM Bank,SOM,NODAL,true,false,true
+6527d97d47eb507e0cd3390f,TBSB,Thane Bharat Sahakari Bank,TBS,NODAL,true,false,true
+6527d97d47eb507e0cd33910,VARA,Varachaa Bank,VAR,,false,false,true
+6527d97d47eb507e0cd33911,ZCBL,The Zoroastrian Co-op Bank,ZOB,NODAL,true,false,true
+6527d97d47eb507e0cd33914,APGV,ANDHRA PRADESH GRAMEENA VIKAS BANK,APGX,,false,true,true
+6527d97d47eb507e0cd33917,JIOP,JIO PAYMENTS BANK LIMITED,JIOP,,false,true,true
+6527d97d47eb507e0cd3391d,PRTH,PRATHAMA BANK,PRT,,false,true,true
+6527d97d47eb507e0cd3391e,RNSB,RAJKOT NAGRIK SAHAKARI BANK LIMITED,RNS,,false,true,true
+6527d97d47eb507e0cd33923,NJBK,THE NAV JEEVAN CO-OP BANK LTD.,NJCX,,false,true,true
+6527d97d47eb507e0cd338b7,ANDB,Andhra Bank,ADB,NODAL,true,true,true
+6527d97d47eb507e0cd338b8,BBKM,Bank of Bahrain and Kuwait,BBK,NODAL,true,true,true
+6527d97d47eb507e0cd338b9,BARB,Bank of Baroda,BBR,NODAL,true,true,true
+6527d97d47eb507e0cd338bb,CNRB,Canara Bank,CNB,NODAL,true,true,true
+6527d97d47eb507e0cd338bc,CSBK,Catholic Syrian Bank,CSB,NODAL,true,true,true
+6527d97d47eb507e0cd338be,CORP,Corporation Bank,CRP,NODAL,true,true,true
+6527d97d47eb507e0cd338c4,DLXB,Dhanalakshmi Bank,DLB,NODAL,true,true,true
+6527d97d47eb507e0cd338c6,IDIB,Indian Bank,INB,NODAL,true,true,true
+6527d97d47eb507e0cd338c8,INDB,IndusInd Bank,IDS,NODAL,true,true,true
+6527d97d47eb507e0cd338ca,JSBP,Janata Sahakari Bank,JSB,NODAL,true,true,true
+6527d97d47eb507e0cd338d2,PUNB,Punjab National Bank - Retail Net Banking,PNB,NODAL,true,true,true
+6527d97d47eb507e0cd338d7,SIBL,South Indian Bank,SIB,NODAL,true,true,true
+6527d97d47eb507e0cd338d8,SCBL,Standard Chartered Bank,SCB,NODAL,true,true,true
+6527d97d47eb507e0cd338da,TMBL,Tamilnad Mercantile Bank Ltd.,TMB,NODAL,true,true,true
+6527d97d47eb507e0cd338dc,TJSB,TJSB Bank,TJB,NODAL,true,true,true
+6527d97d47eb507e0cd338de,UBIN,Union Bank of India,UBI,NODAL,true,true,true
+6527d97d47eb507e0cd338e0,VIJB,Vijaya Bank,VJB,NODAL,true,true,true
+6527d97d47eb507e0cd338e1,YESB,Yes Bank Ltd,YBK,NODAL,true,true,true
+6527d97d47eb507e0cd338e4,RATN,Ratnakar Bank - Retail Net Banking,RBL,NODAL,true,true,true
+6527d97d47eb507e0cd338e6,CITI,CITI BANK,CIT,,false,true,true
+6527d97d47eb507e0cd338e7,CCBL,Citizen Credit Coop,CCB,,false,true,true
+6527d97d47eb507e0cd338ec,SDCB,Surat District Coop,SDC,,false,true,true
+6527d97d47eb507e0cd338f1,DBSS,DBS Bank,DBS,,false,true,true
+6527d97d47eb507e0cd338f9,BACB,BASSEIN CATHOLIC COOP,BAC,,false,true,true
+6527d97d47eb507e0cd33904,GSCB,Gujarat State Cooperative Bank,GSC,NODAL,true,false,true
+6527d97d47eb507e0cd33905,IDFB,IDFC Bank Netbanking,IDN,NODAL,true,false,true
+6527d97d47eb507e0cd3390a,NNSB,Nutan Nagarik Sahakari Bank,NUT,NODAL,true,false,true
+6527d97d47eb507e0cd3390d,SURY,Suryoday Small Finance Bank,SRB,NODAL,true,false,true
+6527d97d47eb507e0cd33912,ABPB,ADITYA BIRLA IDEA PAYMENTS BANK LTD,ABPB,,false,true,true
+6527d97d47eb507e0cd33919,KCBL,KAPOL COOPERATIVE BANK LIMITED,KCB,,false,true,true
+6527d97d47eb507e0cd3391b,LAVB,Lakshmi Vilas Bank,LVB,,false,true,true
+6527d97d47eb507e0cd33922,NTBL,THE NAINITAL BANK LIMITED,NTB,,false,true,true
+6527d97d47eb507e0cd33924,TNSC,THE TAMIL NADU STATE APEX COOPERATIVE BANK,TNS,,false,true,true
+6527d97d47eb507e0cd33925,TBSB,THE THANE BHARAT SAHAKARI BANK LIMITED,TBS,,false,true,true
+6527d97d47eb507e0cd338b0,HDFC,HDFC BANK,HDF,DIRECT,true,true,true
+6527d97d47eb507e0cd338b2,ICIC,ICICI Bank - Retail Net Banking,ICI,DIRECT,true,true,true
+6527d97d47eb507e0cd338bd,CBIN,Central Bank of India,CBI,NODAL,true,true,true
+6527d97d47eb507e0cd338c1,DEUT,Deutsche Bank,DBK,NODAL,true,true,true
+6527d97d47eb507e0cd338c2,UTKS,Utkarsh Small Finance Bank,UTK,NODAL,true,true,true
+6527d97d47eb507e0cd338c9,JAKA,Jammu & Kashmir Bank,JKB,NODAL,true,true,true
+6527d97d47eb507e0cd338cb,KARB,Karnataka Bank Ltd,KBL,NODAL,true,true,true
+6527d97d47eb507e0cd338cc,KVBL,Karur Vysya Bank,KVB,NODAL,true,true,true
+6527d97d47eb507e0cd338cd,LAVB,Laxmi Vilas Bank - Retail Net Banking,LVR,NODAL,true,true,true
+6527d97d47eb507e0cd338cf,ORBC,Oriental Bank of Commerce,OBC,NODAL,true,true,true
+6527d97d47eb507e0cd338d3,ABNA,RBS (The Royal Bank of Scotland),RBS,NODAL,true,true,true
+6527d97d47eb507e0cd338d5,SVCB,Shamrao Vitthal Co-operative Bank - Retail Net Banking,SVC,NODAL,true,true,true
+6527d97d47eb507e0cd338d6,AUBL,AU Small Finance Bank,AUB,NODAL,true,true,true
+6527d97d47eb507e0cd338db,TNSC,Tamilnadu State Coop Bank,TNC,NODAL,true,true,true
+6527d97d47eb507e0cd338dd,UCBA,UCO Bank,UCO,NODAL,true,true,true
+6527d97d47eb507e0cd338e5,BKID,Bank Of India,BOI,NODAL,true,true,true
+6527d97d47eb507e0cd338e9,HSBC,HSBC Bank,HSB,NODAL,true,true,true
+6527d97d47eb507e0cd338ed,APMC,AP Mahesh Coop,APM,,false,false,true
+6527d97d47eb507e0cd338ef,SPCB,Surat Peoples Coop,SPC,,false,false,true
+6527d97d47eb507e0cd338f3,UJVN,Ujjivan SFB,UJV,NODAL,false,true,true
+6527d97d47eb507e0cd338f5,GBCB,Greater Bombay Coop,GBC,,false,true,true
+6527d97d47eb507e0cd338f7,PJSB,PJS Bank,PJS,,false,true,true
+6527d97d47eb507e0cd338f8,NMCB,NASIK MERC,NMC,,false,false,true
+6527d97d47eb507e0cd338fd,ASBL,Apna Sahakari Bank Ltd,ASB,,false,true,true
+6527d97d47eb507e0cd338ff,KJSB,Kalyan Janata Sahakari,KJS,,false,true,true
+6527d97d47eb507e0cd33902,ESMF,ESAF Small Finance Bank,ESF,NODAL,true,true,true
+6527d97d47eb507e0cd33908,KVGB,Karnataka Vikas Gramin Bank,KVG,NODAL,true,true,true
+6527d97d47eb507e0cd33918,KAIJ,KALLAPPANNA AWADE ICHALKARANJI JANATA SAHAKARI BANK\nLIMITED,KAI,,false,true,true
+6527d97d47eb507e0cd3391a,KLGB,KERALA GRAMIN BANK,KLG,,false,true,true
+6527d97d47eb507e0cd33921,COSB,THE COSMOS CO OPERATIVE BANK LIMITED,COS,,false,true,true
+6527d97d47eb507e0cd33926,VCOB,THE VIJAY CO OPERATIVE BANK LTD.,VIJX,,false,true,true
+6527d97d47eb507e0cd33928,TJSB,TJSB SAHAKARI BANK LTD,TJS,,false,true,true
+6527d97d47eb507e0cd338b6,ALLA,Allahabad Bank - Retail Net Banking,ALB,NODAL,true,true,true
+6527d97d47eb507e0cd338ba,MAHB,Bank of Maharashtra,BOM,NODAL,true,true,true
+6527d97d47eb507e0cd338bf,COSB,Cosmos Bank,COB,NODAL,true,true,true
+6527d97d47eb507e0cd338c0,BKDN,Dena Bank,DEN,NODAL,true,true,true
+6527d97d47eb507e0cd338c3,DCBL,Development Credit Bank - Retail,DCB,NODAL,true,true,true
+6527d97d47eb507e0cd338c7,IOBA,Indian Overseas Bank,IOB,NODAL,true,true,true
+6527d97d47eb507e0cd338ce,NKGS,NKGSB BANK,NKB,NODAL,true,true,true
+6527d97d47eb507e0cd338d0,PMCB,Punjab & Maharastra Coop Bank,PMC,NODAL,true,true,true
+6527d97d47eb507e0cd338d1,PSIB,Punjab & Sind Bank,PSB,NODAL,true,true,true
+6527d97d47eb507e0cd338df,UTBI,United Bank of India,UNI,NODAL,true,true,true
+6527d97d47eb507e0cd338e2,SBMY,STATE BANK OF MYSORE,SBM,NODAL,true,true,true
+6527d97d47eb507e0cd338ea,ESFB,Equitas Small Finance,EQB,NODAL,true,true,true
+6527d97d47eb507e0cd338f4,BCBM,Bharat Cooperative,BCB,NODAL,true,true,true
+6527d97d47eb507e0cd338fa,DNSB,DOMBIVLI NAGARI SAHAKARI,DNS,,false,true,true
+6527d97d47eb507e0cd338fc,SGBA,SAURASHTRA GRAMIN BANK,SAGX,,false,false,true
+6527d97d47eb507e0cd338fe,HCBL,HASTI COOP Bank Ltd,HCB,,false,true,true
+6527d97d47eb507e0cd33901,CLBL,Capital Bank,CPB,NODAL,true,false,true
+6527d97d47eb507e0cd33906,JSFB,Jana Small Finance Bank,JNB,NODAL,true,false,true
+6527d97d47eb507e0cd33909,NESF,North East Small Finance Bank,NEB,NODAL,true,false,true
+6527d97d47eb507e0cd3390e,SUTB,Sutex Bank,SUT,NODAL,true,true,true
+6527d97d47eb507e0cd33913,AIRP,AIRTEL PAYMENTS BANK LIMITED,AIRP,,false,true,true
+6527d97d47eb507e0cd33915,FINO,FINO PAYMENTS BANK LTD,FINO,,false,true,true
+6527d97d47eb507e0cd33916,JJSB,JALGAON JANATA SAHAKARI BANK LIMITED,JJS,,false,true,true
+6527d97d47eb507e0cd3391c,MCBL,MAHANAGAR COOPERATIVE BANK,MCB,,false,true,true
+6527d97d47eb507e0cd3391f,RATN,RBL Bank Limited,RAT,,false,true,true
+6527d97d47eb507e0cd33920,TSAB,TELANGANA STATE COOP APEX BANK,TSA,,false,true,true
+6527d97d47eb507e0cd33927,VSBL,THE VISHWESHWAR SAHAKARI BANK LIMITED,VSB,,false,true,true
+6528c02747eb507e0cd33938,DOHB,DOHA BANK QSC,DOH,,false,true,true
+652e6b777dd111b3f11b8f5f,VASJ,VASAI JANATA SAHAKARI BANK,VJSX,,false,false,true
+6542616e3be22c5e6b2686bf,TDCB,Thane District Central Co-operative Bank,TDC,NODAL,false,false,true
+662f3c5a3f3da94506c49b73,PMEC,Prime Coop Bank,PME,NODAL,false,false,true
+669e53eba9586fbda06c96ed,AJHC,AMBARNATH JAIHIND COOP BANK,AJSX,,false,false,true
+66d82f942c86176769abbf77,SUNB,Suran National Coop Bank,SUN,,false,false,true
+6728507d3f2e287b635dad44,MDBK,Model Coop Bank,MDEX,NODAL,false,false,true
+678a2b9492b303a798e8939b,RSBL,RSB Bank,RSB,NODAL,false,false,true
+6791febe4f8ffb11b848b539,IPOS,India Post,IPPB,DIRECT,true,false,true

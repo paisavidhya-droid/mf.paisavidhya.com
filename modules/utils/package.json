@@ -1,0 +1,10 @@
+{
+    "name": "@niveshstar/utils",
+    "version": "0.0.1",
+    "description": "utils for nivesh start hybrid application",
+    "main": "./index.ts",
+    "dependencies": {
+        "@niveshstar/hook": "*",
+        "@niveshstar/constant": "*"
+    }
+}

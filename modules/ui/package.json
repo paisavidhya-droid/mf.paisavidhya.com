@@ -1,0 +1,12 @@
+{
+  "name": "@niveshstar/ui",
+  "version": "0.0.1",
+  "description": "Components for Nivesh Star hybrid application",
+  "main": "./index.ts",
+  "dependencies": {
+    "@niveshstar/constant": "*",
+    "@niveshstar/context": "*",
+    "@niveshstar/hook": "*",
+    "@niveshstar/utils": "*"
+  }
+}
