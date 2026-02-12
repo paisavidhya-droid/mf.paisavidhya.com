@@ -7,6 +7,7 @@ import {
   RootStateType,
   ThemeContext,
   useGetAllOrdersListQuery,
+  useGetPartnerOrdersListQuery,
   useLazyGetOrderBseDetailsQuery,
   useLazyGetSxpBseDetailsQuery,
 } from "@niveshstar/context";
@@ -18,6 +19,7 @@ import CustomCard from "../../CustomCard";
 import CustomModal from "../../CustomModal";
 import EmptyResult from "../../EmptyResult";
 import FlexRow from "../../FlexRow";
+import Padding from "../../Padding";
 import Table, { ColumnsType } from "../../Table";
 import Typography from "../../Typography";
 import OrderDetailsModal from "./OrderDetailsModal";
@@ -30,6 +32,7 @@ function Orders() {
 
   const [isDetailsModalVisible, setIsDetailsModalVisible] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState({ id: null, type: null });
+  const [page, setPage] = useState(1);
 
   const closeDetailsModal = useCallback(() => {
     setSelectedOrder({ id: null, type: null });
@@ -41,27 +44,66 @@ function Orders() {
   }, []);
 
   const investorId = authDetail.userType === "investor" ? authDetail.id : params?.investorId;
+  const isGlobalView = authDetail.userType === "partner" && !investorId;
+  const limit = isGlobalView ? 50 : 999;
 
   const { data: ordersData = { list: [], total: 0, limit: 0, page: 1 }, isFetching } = useGetAllOrdersListQuery(
     {
-      page: 1,
-      limit: 999,
-      investorId: authDetail.userType === "partner" ? investorId : undefined,
+      page,
+      limit,
+      investorId: authDetail.userType === "partner" && investorId ? investorId : undefined,
     },
     {
       skip: !investorId,
     }
   );
 
+  const { data: globalOrdersData = { list: [], total: 0, limit: 0, page: 1 }, isFetching: isFetchingGlobal } =
+    useGetPartnerOrdersListQuery(
+      {
+        page,
+        limit,
+      },
+      {
+        skip: !isGlobalView || !authDetail.id,
+      }
+    );
+
+  const currentOrdersData = isGlobalView ? globalOrdersData : ordersData;
+  const currentIsFetching = isGlobalView ? isFetchingGlobal : isFetching;
+
   const [
     getOrderBseDetailsApi,
     { isFetching: isFetchingOrderBseDetails, data: orderBseData, isError: orderBseIsError },
   ] = useLazyGetOrderBseDetailsQuery();
+
   const [getSxpBseDetailsApi, { isFetching: isFetchingSxpBseDetails, data: sxpBseData, isError: sxpBseIsError }] =
     useLazyGetSxpBseDetailsQuery();
 
-  const initialColumns: ColumnsType[] = useMemo<ColumnsType[]>(
-    () => [
+  const initialColumns: ColumnsType[] = useMemo<ColumnsType[]>(() => {
+    const columns: ColumnsType[] = [];
+
+    if (isGlobalView) {
+      columns.push({
+        key: "investor",
+        name: "Investor",
+        width: 200,
+        RenderCell: ({ value }) => {
+          return (
+            <View>
+              <Typography>
+                {[value.investor?.first_name, value.investor?.last_name].filter(Boolean).join(" ")}
+              </Typography>
+              <Typography size="1" color={themeColor.gray[10]}>
+                {value.investor.client_code}
+              </Typography>
+            </View>
+          );
+        },
+      });
+    }
+
+    columns.push(
       {
         key: "orderId",
         name: "Order ID",
@@ -105,6 +147,13 @@ function Orders() {
             </Typography>
           </View>
         ),
+      },
+      {
+        key: "remarks",
+        name: "Remarks",
+        width: 200,
+        maxWidth: 400,
+        RenderCell: ({ value }) => <Typography>{value.remarks || "-"}</Typography>,
       },
       {
         key: "amount",
@@ -179,10 +228,11 @@ function Orders() {
             onPress={() => setSelectedOrder({ id: value.id, type: value.type })}
           />
         ),
-      },
-    ],
-    [isLight, themeColor]
-  );
+      }
+    );
+
+    return columns;
+  }, [isGlobalView, isLight, themeColor]);
 
   useEffect(() => {
     if (!selectedOrder.id) return;
@@ -195,25 +245,41 @@ function Orders() {
 
   return (
     <CustomCard style={{ flexGrow: 1 }}>
-      {isFetching ? (
+      {currentIsFetching ? (
         <FlexRow justifyContent="center" alignItems="center" style={{ minHeight: 200 }}>
           <ActivityIndicator size={40} color={themeColor.accent[9]} />
         </FlexRow>
       ) : null}
 
-      {!isFetching && ordersData.list.length === 0 ? <EmptyResult /> : null}
+      {!currentIsFetching && currentOrdersData.list.length === 0 ? <EmptyResult /> : null}
 
-      {!isFetching && ordersData.list.length !== 0 ? (
+      {!currentIsFetching && currentOrdersData.list.length !== 0 ? (
         <Table
           id="id"
           flexKey="schemeName"
-          data={ordersData.list}
+          data={currentOrdersData.list}
           initialColumns={initialColumns}
           TopActionRow={
-            <FlexRow style={{ flexGrow: 1 }}>
+            <FlexRow style={{ flexGrow: 1, justifyContent: "space-between", alignItems: "center" }}>
               <Typography size="5" weight="medium" align="left">
-                Orders
+                {isGlobalView ? "Recent Orders" : "Orders"}
               </Typography>
+              {isGlobalView && currentOrdersData.total > limit ? (
+                <FlexRow>
+                  <Button variant="outline" title="Prev" disabled={page === 1} onPress={() => setPage(page - 1)} />
+                  <Padding width={8} />
+                  <Typography size="3">
+                    Page {page} of {Math.ceil(currentOrdersData.total / limit)}
+                  </Typography>
+                  <Padding width={8} />
+                  <Button
+                    variant="outline"
+                    title="Next"
+                    disabled={page === Math.ceil(currentOrdersData.total / limit)}
+                    onPress={() => setPage(page + 1)}
+                  />
+                </FlexRow>
+              ) : null}
             </FlexRow>
           }
         />

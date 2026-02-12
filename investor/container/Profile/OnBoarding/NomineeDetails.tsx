@@ -13,6 +13,7 @@ import {
 } from "@niveshstar/context";
 import { useNavigation } from "@niveshstar/hook";
 import { Button, FlexRow, getInvestorPayload, Padding, Typography } from "@niveshstar/ui";
+import { getNamesPart } from "@niveshstar/utils";
 
 import NomineeQuestion from "../../../components/Profile/OnBoard/NomineeDetails/NomineeQuestion";
 import Progress from "../../../components/Profile/OnBoard/ProgressBar";
@@ -64,21 +65,16 @@ function NomineeDetails() {
   const onSubmit = useCallback(
     async (data: typeof defaultValues) => {
       try {
-        const [firstName = "", middleName = "", ...rest] = data.nominee.name.trim().split(/\s+/);
+        const { first_name, middle_name, last_name } = getNamesPart(data.nominee.name);
 
         //@ts-ignore
-        data.nominee.first_name = firstName;
+        data.nominee.first_name = first_name;
         //@ts-ignore
-        data.nominee.middle_name = middleName;
+        data.nominee.middle_name = middle_name;
         //@ts-ignore
-        data.nominee.last_name = rest.join(" ");
-
-        console.log(data);
+        data.nominee.last_name = last_name;
 
         const payload = await getInvestorPayload(data, "NOMINEE");
-
-        console.log(payload.nominee);
-        return;
 
         const res = await postRelatedPartyApi({ investorId: undefined, payload: payload.nominee }).unwrap();
 
@@ -86,8 +82,7 @@ function NomineeDetails() {
         await postIdentifierApi({ investorId: undefined, payload: payload.identifier }).unwrap();
 
         navigator.replace("profile", "main");
-      } catch (e) {
-        console.log("err", e);
+      } catch {
         //pass
       }
     },

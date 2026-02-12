@@ -49,6 +49,12 @@ export const investorProfileApi = createApi({
         method: "GET",
       }),
     }),
+    getKycLink: builder.query({
+      query: (investorId) => ({
+        url: `/investor/kyc_link${investorId ? `?investor_id=${investorId}` : ""}`,
+        method: "GET",
+      }),
+    }),
     postUpdateUcc: builder.mutation({
       query: (payload) => ({
         url: "/investor/update_ucc",
@@ -69,4 +75,5 @@ export const {
   useLazyGetInvestorBseDetailsQuery,
   useGetUploadAofMutation,
   usePostUpdateUccMutation,
+  useLazyGetKycLinkQuery,
 } = investorProfileApi;

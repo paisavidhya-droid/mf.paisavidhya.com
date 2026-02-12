@@ -443,3 +443,23 @@ export const getAvatarInitials = (name: string) => {
   const result = `${firstName.toUpperCase()}${lastName.toUpperCase()}`;
   return result.length ? result : "AZ";
 };
+
+export const getNamesPart = (name: string) => {
+  const nameParts = name.trim().split(/\s+/).filter(Boolean);
+
+  let first_name = null;
+  let middle_name = null;
+  let last_name = null;
+
+  if (nameParts.length === 1) {
+    first_name = nameParts[0];
+  } else if (nameParts.length === 2) {
+    [first_name, last_name] = nameParts;
+  } else if (nameParts.length >= 3) {
+    first_name = nameParts[0];
+    middle_name = nameParts[1];
+    last_name = nameParts.slice(2).join(" ");
+  }
+
+  return { first_name, middle_name, last_name };
+};

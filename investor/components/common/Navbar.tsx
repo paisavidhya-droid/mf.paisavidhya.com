@@ -12,7 +12,7 @@ import { FlexRow, Padding, Typography } from "@niveshstar/ui";
 
 import LeftNavigation from "./LeftNavigation";
 
-const logoImg = Asset.fromModule(require("@niveshstar/assets/img/logo.png")).uri;
+const logoImg = Asset.fromModule(require("@niveshstar/assets/img/logo-blue.jpg")).uri;
 
 interface PropsType {
   title?: string;

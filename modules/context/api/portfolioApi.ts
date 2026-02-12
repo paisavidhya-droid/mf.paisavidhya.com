@@ -32,6 +32,13 @@ export const portfolioApi = createApi({
         method: "GET",
       }),
     }),
+    getPartnerOrdersList: builder.query({
+      query: ({ page = 1, limit = 10 }) => ({
+        url: `/portfolio/partner?page=${page}&limit=${limit}`,
+        method: "GET",
+      }),
+      transformResponse: (data) => data.data,
+    }),
   }),
 });
 
@@ -40,4 +47,5 @@ export const {
   useGetHoldingsQuery,
   useLazyGetRedemptionSchemeByIdQuery,
   useLazyGetRedemptionSchemeQuery,
+  useGetPartnerOrdersListQuery,
 } = portfolioApi;

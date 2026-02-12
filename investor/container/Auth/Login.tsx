@@ -163,7 +163,7 @@ function Login() {
                 title="Signup"
                 variant="link"
                 typographyProps={{ underlined: true, weight: "regular" }}
-                onPress={() => authNavigator.replace("signup")}
+                onPress={() => authNavigator.replace("signup", { partner: "paisa-vidya" })}
               />
             </FlexRow>
           </MotiView>

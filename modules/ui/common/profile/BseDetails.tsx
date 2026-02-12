@@ -9,6 +9,7 @@ import {
   useGetCreatePhysicalUccMutation,
   useGetUploadAofMutation,
   useLazyGetInvestorBseDetailsQuery,
+  useLazyGetKycLinkQuery,
 } from "@niveshstar/context";
 import { useNavigation } from "@niveshstar/hook";
 
@@ -42,10 +43,11 @@ function BseDetails(props: PropsType) {
     setIsUccModalVisible(true);
   }, []);
 
+  const [getKycLinkApi, { isLoading: isGettingKycLink }] = useLazyGetKycLinkQuery();
   const [getUploadAofApi, { isLoading: isGettingUploadAof }] = useGetUploadAofMutation();
+  const [getCreatePhysicalUccApi, { isLoading: isGettingCreatePhysicalUcc }] = useGetCreatePhysicalUccMutation();
   const [getUccStatusApi, { isLoading: isGettingUccData, data: uccData, error: uccError }] =
     useLazyGetInvestorBseDetailsQuery();
-  const [getCreatePhysicalUccApi, { isLoading: isGettingCreatePhysicalUcc }] = useGetCreatePhysicalUccMutation();
 
   const retryInvestmentAcc = useCallback(async () => {
     try {
@@ -71,6 +73,17 @@ function BseDetails(props: PropsType) {
     }
     openUccModal();
   }, [getUccStatusApi, openUccModal, params]);
+
+  const getKycLink = useCallback(async () => {
+    try {
+      const result = await getKycLinkApi(params?.investorId ?? undefined).unwrap();
+      if (result.success && result.data?.kyc_url) {
+        Linking.openURL(result.data.kyc_url);
+      }
+    } catch {
+      //pass
+    }
+  }, [getKycLinkApi, params]);
 
   return (
     <>
@@ -159,6 +172,14 @@ function BseDetails(props: PropsType) {
               onPress={checkUccStatus}
               loading={isGettingUccData}
               disabled={isGettingUccData}
+            />
+            <Padding width={12} />
+            <Button
+              variant="soft"
+              title="Get KYC Link"
+              onPress={getKycLink}
+              loading={isGettingKycLink}
+              disabled={isGettingKycLink}
             />
           </FlexRow>
         </>

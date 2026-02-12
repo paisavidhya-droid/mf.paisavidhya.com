@@ -80,8 +80,8 @@ function PersonalDetails() {
           payload.pep_details = data.pep_details.value;
           payload.country_of_birth = data.country_of_birth.value;
           payload.place_of_birth = data.country_of_birth.value;
-          payload.tin_no = data.tin_no;
-          payload.tin_country = data.tin_country.value;
+          payload.tin_no = isForeign ? data.tin_no : undefined;
+          payload.tin_country = isForeign ? data.tin_country.value : undefined;
           break;
         case 2:
           payload.line1 = data.address.line1;

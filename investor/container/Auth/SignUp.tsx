@@ -36,6 +36,17 @@ function SignUp() {
   const authDetail = useSelector((state: RootStateType) => state.auth);
 
   const { authNavigator, navigator, params } = useNavigation();
+
+useEffect(() => {
+  const DEFAULT_PARTNER = "paisa-vidya";
+
+  // If user landed on /signup without partner, inject it
+  if (!params?.partner) {
+    authNavigator.replace("signup", { partner: DEFAULT_PARTNER });
+  }
+}, [params?.partner, authNavigator]);
+
+
   const [signupApi, { isLoading: isSigningUp }] = usePostSignupMutation();
   const [postSingupOtpApi, { isLoading: isPostingSingupOtp }] = usePostSingupOtpMutation();
   const { data: partnerInfo, isLoading: isGetingPartnerInfo } = useGetPartnerWhiteLabelInfoQuery(params?.partner, {
