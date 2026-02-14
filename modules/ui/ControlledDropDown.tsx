@@ -99,7 +99,7 @@ function ControlledDropDown(props: PropsType) {
             onClick={() => {
               setQuery(() => "");
               onChange(option);
-              setIsOpen((isOpen) => !isOpen);
+              setIsOpen(false);
             }}
             className={`option ${option.name === value.name ? "selected" : ""}`}
             key={`${name}-${index}`}
@@ -286,10 +286,8 @@ function ControlledDropDown(props: PropsType) {
                     borderColor: disabled ? themeColor.gray[1] : error ? themeColor.red["a7"] : themeColor.gray[6],
                     color: disabled ? themeColor.gray[8] : themeColor.gray[12],
                   }}
-                  onClick={() => {
-                    setIsOpen(!isOpen);
-                  }}
-                  // onFocus={() => { setIsOpen(true) }}
+                  onClick={() => setIsOpen(true)}
+                  onFocus={() => { setIsOpen(true) }}
                   onBlur={() => {
                     setTimeout(() => {
                       setIsOpen(false);

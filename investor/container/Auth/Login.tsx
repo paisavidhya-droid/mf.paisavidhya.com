@@ -5,7 +5,7 @@ import { MotiView } from "moti";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import { numberRegex } from "@niveshstar/constant";
+import { emailRegex, phoneRegex } from "@niveshstar/constant";
 import {
   AppDispatch,
   RootStateType,
@@ -17,10 +17,10 @@ import {
 import { useNavigation } from "@niveshstar/hook";
 import { Button, Column, ControlledInput, FlexRow, Padding, Typography } from "@niveshstar/ui";
 
-const authBackground = Asset.fromModule(require("@niveshstar/assets/img/auth-background.webp")).uri;
+const authBackground = Asset.fromModule(require("@niveshstar/assets/img/pv-auth-background.png")).uri;
 
 const defaultValue = {
-  mobile: "",
+  identifier: "",
   password: "",
 };
 
@@ -43,7 +43,7 @@ function Login() {
       try {
         const payload = {
           role: "INVESTOR",
-          mobile: data.mobile,
+          identifier: data.identifier,
           password: data.password,
         };
 
@@ -91,34 +91,28 @@ function Login() {
             </Typography>
             <Padding height={8} />
             <Typography color={themeColor.gray[10]} align="center">
-              Enter your mobile below to login to your account
+              Enter your mobile/email below to login to your account
             </Typography>
 
             <Padding height={24} />
 
             <ControlledInput
               control={control}
-              name="mobile"
-              label="Mobile"
-              placeholder="Enter mobile number"
-              inputMode="numeric"
-              keyboardType="number-pad"
+              name="identifier"
+              autoCapitalize="none"
+              label="Mobile or Email"
+              placeholder="Enter mobile or email"
               rules={{
                 required: {
                   value: true,
-                  message: "Please enter a mobile number",
+                  message: "Please enter a mobile number or email address",
                 },
-                minLength: {
-                  value: 10,
-                  message: "Please enter a valid mobile number",
-                },
-                maxLength: {
-                  value: 10,
-                  message: "Please enter a valid mobile number",
-                },
-                pattern: {
-                  value: numberRegex,
-                  message: "Please enter a valid mobile number",
+                validate: (val) => {
+                  const isMobile = phoneRegex.test(val);
+                  const isEmail = emailRegex.test(val);
+
+                  if (!isEmail && !isMobile) return "Invalid mobile / email";
+                  return true;
                 },
               }}
             />

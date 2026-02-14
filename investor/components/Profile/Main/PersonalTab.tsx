@@ -286,38 +286,42 @@ function PersonalTab(props: PropsType) {
           />
         </Column>
 
-        <Column col={colSize} offset={8} style={{ zIndex: 2 }}>
-          <ControlledDropDown
-            key="tin_country"
-            label="Tin Country"
-            name="tin_country"
-            control={control}
-            placeholder="Start typing to search"
-            options={countryOptions}
-            rules={{
-              required: {
-                value: true,
-                message: "Please select country of tin",
-              },
-            }}
-          />
-        </Column>
+        {investorProfile?.data?.tax_status === "NRE" || investorProfile?.data?.tax_status === "NRO" ? (
+          <Column col={colSize} offset={8} style={{ zIndex: 2 }}>
+            <ControlledDropDown
+              key="tin_country"
+              label="Tin Country"
+              name="tin_country"
+              control={control}
+              placeholder="Start typing to search"
+              options={countryOptions}
+              rules={{
+                required: {
+                  value: true,
+                  message: "Please select country of tin",
+                },
+              }}
+            />
+          </Column>
+        ) : null}
 
-        <Column col={colSize} offset={8} style={{ zIndex: 0 }}>
-          <ControlledInput
-            key="tin_no"
-            label="Tin Number"
-            name="tin_no"
-            control={control}
-            placeholder="Tin number"
-            rules={{
-              required: {
-                value: true,
-                message: "Please enter tin number",
-              },
-            }}
-          />
-        </Column>
+        {investorProfile?.data?.tax_status === "NRE" || investorProfile?.data?.tax_status === "NRO" ? (
+          <Column col={colSize} offset={8} style={{ zIndex: 0 }}>
+            <ControlledInput
+              key="tin_no"
+              label="Tin Number"
+              name="tin_no"
+              control={control}
+              placeholder="Tin number"
+              rules={{
+                required: {
+                  value: true,
+                  message: "Please enter tin number",
+                },
+              }}
+            />
+          </Column>
+        ) : null}
 
         <Column col={colSize} offset={8} style={{ zIndex: 1 }}>
           <ControlledDropDown

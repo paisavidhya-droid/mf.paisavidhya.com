@@ -19,7 +19,7 @@ export * from "./investorNoteApi";
 export * from "./ecasApi";
 export * from "./identifierApi";
 export * from "./cartApi";
-export * from "./mobileOtpApi";
+export * from "./otpApi";
 export * from "./portfolioApi";
 export * from "./orderApi";
 export * from "./sxpApi";

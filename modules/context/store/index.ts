@@ -14,7 +14,7 @@ import {
   investorNoteApi,
   investorProfileApi,
   mandateApi,
-  mobileOtpApi,
+  otpApi,
   orderApi,
   partnerApi,
   partnerSettingApi,
@@ -45,7 +45,7 @@ const appReducer = combineReducers({
   [investorNoteApi.reducerPath]: investorNoteApi.reducer,
   [investorProfileApi.reducerPath]: investorProfileApi.reducer,
   [mandateApi.reducerPath]: mandateApi.reducer,
-  [mobileOtpApi.reducerPath]: mobileOtpApi.reducer,
+  [otpApi.reducerPath]: otpApi.reducer,
   [orderApi.reducerPath]: orderApi.reducer,
   [partnerApi.reducerPath]: partnerApi.reducer,
   [partnerSettingApi.reducerPath]: partnerSettingApi.reducer,
@@ -84,7 +84,7 @@ export const store = configureStore({
       .concat(investorNoteApi.middleware)
       .concat(investorProfileApi.middleware)
       .concat(mandateApi.middleware)
-      .concat(mobileOtpApi.middleware)
+      .concat(otpApi.middleware)
       .concat(orderApi.middleware)
       .concat(partnerApi.middleware)
       .concat(partnerSettingApi.middleware)

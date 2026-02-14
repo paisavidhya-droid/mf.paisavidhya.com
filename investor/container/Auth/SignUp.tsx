@@ -5,7 +5,7 @@ import { AnimatePresence, MotiView } from "moti";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 
-import { numberRegex, phoneRegex } from "@niveshstar/constant";
+import { emailRegex, numberRegex, phoneRegex } from "@niveshstar/constant";
 import {
   AppDispatch,
   RootStateType,
@@ -20,10 +20,10 @@ import { useNavigation, useTimer } from "@niveshstar/hook";
 import { Button, Column, ControlledInput, FlexRow, Padding, Typography } from "@niveshstar/ui";
 import { getTimeLeftString } from "@niveshstar/utils";
 
-const authBackground = Asset.fromModule(require("@niveshstar/assets/img/auth-background.webp")).uri;
+const authBackground = Asset.fromModule(require("@niveshstar/assets/img/pv-auth-background.png")).uri;
 
 const defaultValues = {
-  mobile: "",
+  identifier: "",
   password: "",
   confirm_password: "",
   otp: "",
@@ -37,6 +37,7 @@ function SignUp() {
 
   const { authNavigator, navigator, params } = useNavigation();
 
+
 useEffect(() => {
   const DEFAULT_PARTNER = "paisa-vidya";
 
@@ -45,7 +46,6 @@ useEffect(() => {
     authNavigator.replace("signup", { partner: DEFAULT_PARTNER });
   }
 }, [params?.partner, authNavigator]);
-
 
   const [signupApi, { isLoading: isSigningUp }] = usePostSignupMutation();
   const [postSingupOtpApi, { isLoading: isPostingSingupOtp }] = usePostSingupOtpMutation();
@@ -65,27 +65,31 @@ useEffect(() => {
   const goBack = useCallback(() => {
     reset({
       ...defaultValues,
-      mobile: getValues("mobile"),
+      identifier: getValues("identifier"),
     });
 
     setCurrStep(0);
   }, [reset, getValues]);
 
-  const sendOtp = useCallback(async () => {
-    try {
-      const payload = {
-        mobile: getValues("mobile"),
-        partner_id: partnerInfo?.data.partner_id,
-      };
-      const res = await postSingupOtpApi(payload).unwrap();
-      setValue("otp_id", res.data.otp_id);
+  const sendOtp = useCallback(
+    async (data: typeof defaultValues) => {
+      try {
+        const payload = {
+          identifier: data.identifier,
+          type: data.identifier.includes("@") ? "EMAIL" : "MOBILE",
+          partner_id: partnerInfo?.data.partner_id,
+        };
+        const res = await postSingupOtpApi(payload).unwrap();
+        setValue("otp_id", res.data.otp_id);
 
-      resetTimer(60);
-      setCurrStep(1);
-    } catch {
-      //do nothing
-    }
-  }, [getValues, postSingupOtpApi, resetTimer, partnerInfo, setValue]);
+        resetTimer(60);
+        setCurrStep(1);
+      } catch {
+        //do nothing
+      }
+    },
+    [postSingupOtpApi, resetTimer, partnerInfo, setValue]
+  );
 
   const createUserProfile = useCallback(
     async (data: typeof defaultValues) => {
@@ -112,19 +116,18 @@ useEffect(() => {
         };
 
         await dispatch(setAuthDetail(newAuthDetails));
-        authNavigator.replace("register");
       } catch {
         //do nothing
       }
     },
-    [dispatch, signupApi, authNavigator]
+    [dispatch, signupApi]
   );
 
   const onSubmit = useCallback(
     async (data: typeof defaultValues) => {
       switch (currStep) {
         case 0:
-          await sendOtp();
+          await sendOtp(data);
           break;
         case 1:
           createUserProfile(data);
@@ -196,27 +199,21 @@ useEffect(() => {
 
                 <ControlledInput
                   control={control}
-                  name="mobile"
-                  label="Mobile"
-                  placeholder="Enter mobile number"
-                  inputMode="numeric"
-                  keyboardType="number-pad"
+                  name="identifier"
+                  autoCapitalize="none"
+                  label="Mobile or Email"
+                  placeholder="Enter mobile or email"
                   rules={{
                     required: {
                       value: true,
-                      message: "Please enter a mobile number",
+                      message: "Please enter a mobile number or email address",
                     },
-                    minLength: {
-                      value: 10,
-                      message: "Please enter a valid mobile number",
-                    },
-                    maxLength: {
-                      value: 10,
-                      message: "Please enter a valid mobile number",
-                    },
-                    pattern: {
-                      value: phoneRegex,
-                      message: "Please enter a valid mobile number",
+                    validate: (val) => {
+                      const isMobile = phoneRegex.test(val);
+                      const isEmail = emailRegex.test(val);
+
+                      if (!isEmail && !isMobile) return "Invalid mobile / email";
+                      return true;
                     },
                   }}
                 />
@@ -253,7 +250,7 @@ useEffect(() => {
                 style={styles.form}
               >
                 <Typography align="center" type="heading" size="7" weight="bold">
-                  Verify Mobile Number
+                  Verify Mobile Number / Email Address
                 </Typography>
                 <Padding height={8} />
                 <Typography color={themeColor.gray[10]} align="center">
@@ -292,7 +289,7 @@ useEffect(() => {
                 <FlexRow justifyContent="flex-end">
                   <Button
                     variant="link"
-                    title="Edit Mobile?"
+                    title="Edit Mobile / Email?"
                     typographyProps={{ underlined: true, weight: "regular" }}
                     onPress={goBack}
                     style={{ marginTop: -8 }}

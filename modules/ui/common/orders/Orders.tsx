@@ -10,9 +10,10 @@ import {
   useGetPartnerOrdersListQuery,
   useLazyGetOrderBseDetailsQuery,
   useLazyGetSxpBseDetailsQuery,
+  usePostCancelOrderMutation,
 } from "@niveshstar/context";
 import { useNavigation } from "@niveshstar/hook";
-import { convertCurrencyToString, getOrderStatusDisplay } from "@niveshstar/utils";
+import { convertCurrencyToString, getOrderStatusDisplay, toastHelper } from "@niveshstar/utils";
 
 import Button from "../../Button";
 import CustomCard from "../../CustomCard";
@@ -30,17 +31,27 @@ function Orders() {
   const { themeColor, isLight } = useContext(ThemeContext);
   const authDetail = useSelector((state: RootStateType) => state.auth);
 
+  const [selectedOrder, setSelectedOrder] = useState({ id: null, type: null, purpose: null });
   const [isDetailsModalVisible, setIsDetailsModalVisible] = useState(false);
-  const [selectedOrder, setSelectedOrder] = useState({ id: null, type: null });
+  const [isConfirmModalVisible, setIsConfirmModalVisible] = useState(false);
   const [page, setPage] = useState(1);
 
   const closeDetailsModal = useCallback(() => {
-    setSelectedOrder({ id: null, type: null });
+    setSelectedOrder({ id: null, type: null, purpose: null });
     setIsDetailsModalVisible(false);
   }, []);
 
   const openDetailsModal = useCallback(() => {
     setIsDetailsModalVisible(true);
+  }, []);
+
+  const openConfirmModal = useCallback(() => {
+    setIsConfirmModalVisible(true);
+  }, []);
+
+  const closeConfirmModal = useCallback(() => {
+    setSelectedOrder({ id: null, type: null, purpose: null });
+    setIsConfirmModalVisible(false);
   }, []);
 
   const investorId = authDetail.userType === "investor" ? authDetail.id : params?.investorId;
@@ -79,6 +90,19 @@ function Orders() {
 
   const [getSxpBseDetailsApi, { isFetching: isFetchingSxpBseDetails, data: sxpBseData, isError: sxpBseIsError }] =
     useLazyGetSxpBseDetailsQuery();
+
+  const [postCancelOrderApi, { isLoading: isCancellingOrder }] = usePostCancelOrderMutation();
+
+  const confirmCancelOrder = useCallback(async () => {
+    try {
+      await postCancelOrderApi(selectedOrder.id).unwrap();
+      setTimeout(() => {
+        toastHelper("success", "Order cancelled!");
+      }, 200);
+    } catch {
+      //pass
+    }
+  }, [postCancelOrderApi, selectedOrder]);
 
   const initialColumns: ColumnsType[] = useMemo<ColumnsType[]>(() => {
     const columns: ColumnsType[] = [];
@@ -217,16 +241,30 @@ function Orders() {
       {
         key: "action",
         name: "Actions",
-        width: 200,
+        width: 300,
         RenderCell: ({ value }) => (
-          <Button
-            color="neutral"
-            variant="outline"
-            title="Check Details"
-            typographyProps={{ size: "1" }}
-            disabled={!value.exch_order_id}
-            onPress={() => setSelectedOrder({ id: value.id, type: value.type })}
-          />
+          <FlexRow>
+            <Button
+              color="neutral"
+              variant="outline"
+              title="Check Details"
+              typographyProps={{ size: "1" }}
+              disabled={!value.exch_order_id}
+              onPress={() => setSelectedOrder({ id: value.id, type: value.type, purpose: "DETAILS" })}
+            />
+            {value.exch_order_id && value.type === "ORDER" ? (
+              <>
+                <Padding width={8} />
+                <Button
+                  color="danger"
+                  variant="outline"
+                  title="Cancel Order"
+                  typographyProps={{ size: "1" }}
+                  onPress={() => setSelectedOrder({ id: value.id, type: value.type, purpose: "CANCEL" })}
+                />
+              </>
+            ) : null}
+          </FlexRow>
         ),
       }
     );
@@ -235,13 +273,19 @@ function Orders() {
   }, [isGlobalView, isLight, themeColor]);
 
   useEffect(() => {
-    if (!selectedOrder.id) return;
+    if (!selectedOrder.id || !selectedOrder.purpose) return;
 
-    if (selectedOrder.type === "ORDER") getOrderBseDetailsApi(selectedOrder.id);
-    else if (selectedOrder.type === "SXP") getSxpBseDetailsApi(selectedOrder.id);
+    if (selectedOrder.purpose === "DETAILS") {
+      if (selectedOrder.type === "ORDER") getOrderBseDetailsApi(selectedOrder.id);
+      else if (selectedOrder.type === "SXP") getSxpBseDetailsApi(selectedOrder.id);
 
-    openDetailsModal();
-  }, [selectedOrder, openDetailsModal, getOrderBseDetailsApi, getSxpBseDetailsApi]);
+      openDetailsModal();
+    }
+    //
+    else if (selectedOrder.purpose === "CANCEL") {
+      openConfirmModal();
+    }
+  }, [selectedOrder, openDetailsModal, getOrderBseDetailsApi, getSxpBseDetailsApi, openConfirmModal]);
 
   return (
     <CustomCard style={{ flexGrow: 1 }}>
@@ -301,6 +345,17 @@ function Orders() {
         ) : (
           <OrderDetailsModal data={orderBseData} isError={orderBseIsError} isLoading={isFetchingOrderBseDetails} />
         )}
+      </CustomModal>
+
+      <CustomModal
+        footerTitle="Cancel"
+        title="Confirm Cancellation"
+        onConfirm={confirmCancelOrder}
+        closeModal={closeConfirmModal}
+        isModalVisible={isConfirmModalVisible}
+        primaryBtnProps={{ color: "danger", loading: isCancellingOrder, disabled: isCancellingOrder }}
+      >
+        <Typography>Are you sure you want to cancel this order?</Typography>
       </CustomModal>
     </CustomCard>
   );

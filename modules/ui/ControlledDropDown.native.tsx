@@ -168,7 +168,6 @@ function ControlledDropDown(props: PropsType) {
                     <FlashList
                       persistentScrollbar
                       data={filteredOptions}
-                      estimatedItemSize={100}
                       keyExtractor={(item) => item.name.toString()}
                       ItemSeparatorComponent={() => <View style={{ height: 4 }} />}
                       renderItem={({ item }: { item: dropDownValueType }) => (

@@ -12,7 +12,10 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
   };
 
   switch (type) {
-    case "PERSONAL_DETAILS": //personal details
+    case "PERSONAL_DETAILS": {
+      //personal details
+      const isForeign = data?.tax_status === "NRE" || data?.tax_status === "NRO";
+
       payload.personal_details = {
         first_name: data.first_name,
         middle_name: data.middle_name || null,
@@ -26,11 +29,14 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
         income_slab: data.income_slab.value,
         pep_details: data.pep_details.value,
         place_of_birth: data.place_of_birth,
+        tin_no: isForeign ? data.tin_no : undefined,
+        tin_country: isForeign ? data.tin_country.value : undefined,
       };
 
       return payload;
+    }
 
-    case "ADDRESS":
+    case "ADDRESS": {
       payload.address = {
         line1: data.address.line1,
         line2: data.address.line2 || null,
@@ -43,8 +49,10 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
       };
 
       return payload;
+    }
 
-    case "NOMINEE": //nominee
+    case "NOMINEE": {
+      //nominee
       payload.nominee = {
         first_name: data.nominee.first_name,
         middle_name: data.nominee.middle_name || null,
@@ -81,8 +89,10 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
       };
 
       return payload;
+    }
 
-    case "BANK": //bank details
+    case "BANK": {
+      //bank details
       payload.bank = {
         account_holder_name: data.bank_account.account_holder_name,
         account_number: data.bank_account.account_number,
@@ -103,6 +113,7 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
       }
 
       return payload;
+    }
 
     default:
       return payload;

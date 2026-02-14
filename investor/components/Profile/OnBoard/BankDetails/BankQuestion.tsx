@@ -90,7 +90,7 @@ export default function BankQuestion(props: PropsType) {
       <ImagePicker
         control={control}
         name="bank_account.cancelled_cheque"
-        label="Upload Cancelled Cheque"
+        label="Upload Cancelled Cheque (OPTIONAL)"
         title="Select Cheque"
         imageProps={{
           style: {

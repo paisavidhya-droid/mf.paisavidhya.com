@@ -20,8 +20,8 @@ const ThemeContext = createContext<ThemeContextType>({
 });
 
 const ThemeContextProvider = (props: { children: React.ReactNode }) => {
-  const [isLight, setIsLight] = useState(false);
-  const [themeVariant, setThemeVariant] = useState<ThemeVariantType>("GOLDEN");
+  const [isLight, setIsLight] = useState(true);
+  const [themeVariant, setThemeVariant] = useState<ThemeVariantType>("DEFAULT");
 
   const handleToggleTheme = useCallback(async () => {
     const newMode = !isLight;

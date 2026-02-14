@@ -4,7 +4,7 @@ import { Asset } from "expo-asset";
 import { AnimatePresence, MotiView } from "moti";
 import { useForm } from "react-hook-form";
 
-import { numberRegex, phoneRegex } from "@niveshstar/constant";
+import { emailRegex, numberRegex, phoneRegex } from "@niveshstar/constant";
 import {
   ScreenContext,
   ThemeContext,
@@ -20,7 +20,7 @@ const authBackground = Asset.fromModule(require("@niveshstar/assets/img/auth-bac
 const defaultValues = {
   otp: "",
   otp_id: "",
-  mobile: "",
+  identifier: "",
   password: "",
   confirm_password: "",
 };
@@ -59,7 +59,8 @@ function ResetPassword() {
     async (data: typeof defaultValues) => {
       try {
         const payload = {
-          mobile: data.mobile,
+          identifier: data.identifier,
+          type: data.identifier.includes("@") ? "EMAIL" : "MOBILE",
         };
 
         const res = await postSendResetOtpApi(payload).unwrap();
@@ -132,27 +133,21 @@ function ResetPassword() {
 
                 <ControlledInput
                   control={control}
-                  name="mobile"
-                  label="Mobile"
-                  placeholder="Enter mobile number"
-                  inputMode="numeric"
-                  keyboardType="number-pad"
+                  name="identifier"
+                  autoCapitalize="none"
+                  label="Mobile or Email"
+                  placeholder="Enter mobile or email"
                   rules={{
                     required: {
-                      value: false,
-                      message: "Please enter a mobile number",
+                      value: true,
+                      message: "Please enter a mobile number or email address",
                     },
-                    minLength: {
-                      value: 10,
-                      message: "Please enter a valid mobile number",
-                    },
-                    maxLength: {
-                      value: 10,
-                      message: "Please enter a valid mobile number",
-                    },
-                    pattern: {
-                      value: phoneRegex,
-                      message: "Please enter a valid mobile number",
+                    validate: (val) => {
+                      const isMobile = phoneRegex.test(val);
+                      const isEmail = emailRegex.test(val);
+
+                      if (!isEmail && !isMobile) return "Invalid mobile / email";
+                      return true;
                     },
                   }}
                 />

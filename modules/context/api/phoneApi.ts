@@ -7,9 +7,16 @@ export const phoneApi = createApi({
   baseQuery: customBaseQuery,
   tagTypes: ["phone"],
   endpoints: (builder) => ({
-    patchPhone: builder.mutation({
+    postPhone: builder.mutation({
       query: (payload) => ({
-        url: "/phone",
+        url: "/phone_number",
+        method: "POST",
+        body: payload,
+      }),
+    }),
+    patchPhone: builder.mutation({
+      query: ({ id, payload }) => ({
+        url: `/phone_number/${id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -17,4 +24,4 @@ export const phoneApi = createApi({
   }),
 });
 
-export const { usePatchPhoneMutation } = phoneApi;
+export const { usePatchPhoneMutation, usePostPhoneMutation } = phoneApi;

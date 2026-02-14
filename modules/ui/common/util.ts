@@ -49,7 +49,7 @@ export const updateInvestorForm = (
     if (source_of_wealth.length) setValue("source_of_wealth", source_of_wealth[0]);
 
     // setValue("holding_nature", data.holding_nature);
-    // setValue("tax_status", data.tax_status);
+    setValue("tax_status", data.tax_status);
     setValue("place_of_birth", data.place_of_birth);
     setValue("tin_no", data.tin_no);
 

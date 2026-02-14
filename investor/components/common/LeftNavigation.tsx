@@ -281,7 +281,7 @@ function LeftNavigation(props: PropsType) {
         />
         <Padding height={4} /> */}
 
-        <Button
+        {/* <Button
           variant="ghost"
           color="neutral"
           typographyProps={{ weight: "light", color: themeColor.gray[12] }}
@@ -292,7 +292,7 @@ function LeftNavigation(props: PropsType) {
           }}
           title={`Theme: ${themeVariant[0] + themeVariant.slice(1).toLowerCase()}`}
           icon={<FontAwesome name="circle" size={15} style={{ marginRight: 8 }} color={themeColor.accent[9]} />}
-        />
+        /> */}
 
         <Padding height={4} />
 
