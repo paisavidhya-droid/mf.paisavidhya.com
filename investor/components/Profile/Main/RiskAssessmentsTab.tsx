@@ -15,7 +15,7 @@ function RiskAssessmentsTab() {
           Risk Assessments
         </Typography>
         <Padding height={12} />
-        <EmptyResult title="Unable to load investor context." style={{ minHeight: 140 }} />
+        <EmptyResult message="Unable to load investor context." style={{ minHeight: 140 }} />
       </CustomCard>
     );
   }

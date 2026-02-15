@@ -141,6 +141,21 @@ function LeftNavigation(props: PropsType) {
             color="neutral"
             variant="ghost"
             typographyProps={{ weight: "light", color: themeColor.gray[12] }}
+            title="Holder Details"
+            flexRowProps={{
+              justifyContent: "flex-start",
+              style: { width: "100%" },
+            }}
+            style={{ paddingVertical: 2 }}
+            onPress={handleNavigation("profile", "main", { profileTab: "8" })}
+          />
+
+          <Padding height={4} />
+
+          <Button
+            color="neutral"
+            variant="ghost"
+            typographyProps={{ weight: "light", color: themeColor.gray[12] }}
             title="Nominee Details"
             flexRowProps={{
               justifyContent: "flex-start",

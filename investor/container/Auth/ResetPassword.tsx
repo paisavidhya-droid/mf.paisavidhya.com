@@ -15,7 +15,7 @@ import { useNavigation, useTimer } from "@niveshstar/hook";
 import { Button, Column, ControlledInput, FlexRow, Padding, Typography } from "@niveshstar/ui";
 import { getTimeLeftString } from "@niveshstar/utils";
 
-const authBackground = Asset.fromModule(require("@niveshstar/assets/img/auth-background.webp")).uri;
+const authBackground = Asset.fromModule(require("@niveshstar/assets/img/pv-auth-background.png")).uri;
 
 const defaultValues = {
   otp: "",

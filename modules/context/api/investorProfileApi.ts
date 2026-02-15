@@ -29,10 +29,10 @@ export const investorProfileApi = createApi({
       }),
       invalidatesTags: (_, error) => (!error ? ["investorProfile"] : []),
     }),
-    getCreatePhysicalUcc: builder.mutation({
+    postCreatePhysicalUcc: builder.mutation({
       query: (investorId) => ({
         url: `/investor/create_physical_ucc${investorId ? `?investor_id=${investorId}` : ""}`,
-        method: "GET",
+        method: "POST",
       }),
       invalidatesTags: (_, error) => (!error ? ["investorProfile"] : []),
     }),
@@ -71,7 +71,7 @@ export const {
   usePatchInvestorProfileMutation,
   useLazyGetInvestorProfileListQuery,
   useGetInvestorProfileListQuery,
-  useGetCreatePhysicalUccMutation,
+  usePostCreatePhysicalUccMutation,
   useLazyGetInvestorBseDetailsQuery,
   useGetUploadAofMutation,
   usePostUpdateUccMutation,

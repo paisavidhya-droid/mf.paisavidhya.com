@@ -7,7 +7,7 @@ import {
   RootStateType,
   setAuthDetail,
   ThemeContext,
-  useGetCreatePhysicalUccMutation,
+  usePostCreatePhysicalUccMutation,
   usePatchInvestorProfileMutation,
   usePostFileBase64Mutation,
 } from "@niveshstar/context";
@@ -25,8 +25,8 @@ function SignDetails() {
 
   const [postFileBase64Api, { isLoading: isPostingBase64File }] = usePostFileBase64Mutation();
   const [patchInvestorProfileApi, { isLoading: isPatchingInvestorProfile }] = usePatchInvestorProfileMutation();
-  const [getCreatePhysicalUccApi, { isLoading: isGettingCreatePhysicalUcc, error, isError }] =
-    useGetCreatePhysicalUccMutation();
+  const [postCreatePhysicalUccApi, { isLoading: isGettingCreatePhysicalUcc, error, isError }] =
+    usePostCreatePhysicalUccMutation();
 
   const handleSubmit = useCallback(
     async (sign: string) => {
@@ -44,7 +44,7 @@ function SignDetails() {
         const payload = { signature_id: imgRes.data.id };
         await patchInvestorProfileApi({ investorId: undefined, payload: payload }).unwrap();
 
-        const uccResponse = await getCreatePhysicalUccApi(undefined).unwrap();
+        const uccResponse = await postCreatePhysicalUccApi(undefined).unwrap();
 
         if (!uccResponse.success) return;
 
@@ -60,7 +60,7 @@ function SignDetails() {
         //pass
       }
     },
-    [postFileBase64Api, patchInvestorProfileApi, navigator, authDetail, dispatch, getCreatePhysicalUccApi]
+    [postFileBase64Api, patchInvestorProfileApi, navigator, authDetail, dispatch, postCreatePhysicalUccApi]
   );
 
   return (

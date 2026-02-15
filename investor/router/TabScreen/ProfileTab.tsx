@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Navbar } from "../../components/common";
 import BankDetails from "../../container/Profile/OnBoarding/BankDetails";
+import HolderDetails from "../../container/Profile/OnBoarding/HolderDetails";
 import NomineeDetails from "../../container/Profile/OnBoarding/NomineeDetails";
 import OnBoard from "../../container/Profile/OnBoarding/OnBoarding";
 import PersonalDetails from "../../container/Profile/OnBoarding/PersonalDetails";
@@ -38,6 +39,15 @@ export default function ProfileTab() {
         options={{
           title: "Personal Details",
           header: () => <Navbar title="Personal Details" />,
+        }}
+      />
+
+      <Stack.Screen
+        name="onboarding/holder-details"
+        component={HolderDetails}
+        options={{
+          title: "Holder Details",
+          header: () => <Navbar title="Holder Details" />,
         }}
       />
 

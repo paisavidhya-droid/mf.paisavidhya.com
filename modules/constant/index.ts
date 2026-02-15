@@ -153,6 +153,12 @@ export const occupationOptions = [
   { value: "HOUSEWIFE", name: "Housewife" },
   { value: "STUDENT", name: "Student" },
   { value: "OTHERS", name: "Others" },
+  { value: "DOCTOR", name: "Doctor" },
+  { value: "PRIVATE_SECTOR_SERVICE", name: "Private Sector Service" },
+  { value: "PUBLIC_SECTOR_SERVICE", name: "Public Sector Service" },
+  { value: "FOREX_DEALER", name: "Forex Dealer" },
+  { value: "GOVERNMENT_SERVICE", name: "Government Service" },
+  { value: "UNKNOWN_OR_NOT_APPLICABLE", name: "Unknown or Not Applicable" },
 ];
 
 export const sipCancelReasonOptions = [
@@ -272,6 +278,13 @@ export const pepDetailsOptions = [
   { value: "YES", name: "Yes" },
   { value: "RELATIVE", name: "Related to politically exposed person" },
   { value: "NO", name: "No" },
+];
+
+export const holderRankOptions = [
+  { value: "FIRST", name: "First Holder" },
+  { value: "SECOND", name: "Second Holder" },
+  { value: "THIRD", name: "Third Holder" },
+  { value: "GUARDIAN", name: "Guardian" },
 ];
 
 export const genderOptions = [

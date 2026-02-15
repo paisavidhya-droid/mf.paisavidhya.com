@@ -24,3 +24,4 @@ export * from "./portfolioApi";
 export * from "./orderApi";
 export * from "./sxpApi";
 export * from "./riskApi";
+export * from "./holderApi";

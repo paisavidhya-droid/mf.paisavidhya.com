@@ -9,6 +9,7 @@ import {
   ecasApi,
   emailApi,
   fileApi,
+  holderApi,
   identifierApi,
   investorHoldingApi,
   investorNoteApi,
@@ -40,6 +41,7 @@ const appReducer = combineReducers({
   [ecasApi.reducerPath]: ecasApi.reducer,
   [emailApi.reducerPath]: emailApi.reducer,
   [fileApi.reducerPath]: fileApi.reducer,
+  [holderApi.reducerPath]: holderApi.reducer,
   [identifierApi.reducerPath]: identifierApi.reducer,
   [investorHoldingApi.reducerPath]: investorHoldingApi.reducer,
   [investorNoteApi.reducerPath]: investorNoteApi.reducer,
@@ -79,6 +81,7 @@ export const store = configureStore({
       .concat(ecasApi.middleware)
       .concat(emailApi.middleware)
       .concat(fileApi.middleware)
+      .concat(holderApi.middleware)
       .concat(identifierApi.middleware)
       .concat(investorHoldingApi.middleware)
       .concat(investorNoteApi.middleware)

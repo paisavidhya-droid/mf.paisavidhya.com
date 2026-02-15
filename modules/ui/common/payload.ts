@@ -1,6 +1,9 @@
 import { getPayloadForBase64 } from "@niveshstar/utils";
 
-export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "ADDRESS" | "NOMINEE" | "BANK") => {
+export const getInvestorPayload = async (
+  data: any,
+  type: "PERSONAL_DETAILS" | "ADDRESS" | "NOMINEE" | "BANK" | "HOLDER"
+) => {
   let identifier_number = "";
   const payload = {
     personal_details: {},
@@ -8,6 +11,7 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
     nominee: {},
     bank: {} as any,
     identifier: {} as any,
+    holder: {},
     cancelled_cheque: null,
   };
 
@@ -111,6 +115,45 @@ export const getInvestorPayload = async (data: any, type: "PERSONAL_DETAILS" | "
           "CANCELLED_CHEQUE"
         );
       }
+
+      return payload;
+    }
+
+    case "HOLDER": {
+      //holder details
+      payload.holder = {
+        first_name: data.holder.first_name,
+        middle_name: data.holder.middle_name ?? undefined,
+        last_name: data.holder.last_name ?? "",
+        holder_rank: data.holder.holder_rank.value,
+        gender: data.holder.gender.value,
+        date_of_birth: new Date(data.holder.date_of_birth).toISOString(),
+        place_of_birth: data.holder.place_of_birth,
+        country_of_birth: data.holder.country_of_birth.value,
+        occupation: data.holder.occupation.value,
+        source_of_wealth: data.holder.source_of_wealth.value,
+        income_slab: data.holder.income_slab.value,
+        pep_details: data.holder.pep_details.value,
+        email: data.holder.email,
+        mobile: data.holder.mobile,
+      };
+
+      switch (data.holder.identity_type.value) {
+        case "PAN":
+          identifier_number = data.holder.pan;
+          break;
+        case "AADHAR_CARD":
+          identifier_number = data.holder.adhaar;
+          break;
+        case "DRIVING_LICENSE":
+          identifier_number = data.holder.driving_license;
+          break;
+      }
+
+      payload.identifier = {
+        identifier_type: data.holder.identity_type.value,
+        identifier_number: identifier_number,
+      };
 
       return payload;
     }

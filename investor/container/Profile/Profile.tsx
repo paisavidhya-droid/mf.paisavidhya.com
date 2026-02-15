@@ -17,6 +17,7 @@ import AddressTab from "../../components/Profile/Main/AddressTab";
 import BankTab from "../../components/Profile/Main/BankTab";
 import BseTab from "../../components/Profile/Main/BseTab";
 import CommunicationTab from "../../components/Profile/Main/CommunicationTab";
+import HolderTab from "../../components/Profile/Main/HolderTab";
 import NomineeTab from "../../components/Profile/Main/NomineeTab";
 import PasswordTab from "../../components/Profile/Main/PasswordTab";
 import PersonalTab from "../../components/Profile/Main/PersonalTab";
@@ -40,10 +41,10 @@ function Profile() {
   useEffect(() => {
     if (!investorProfile.data) return;
 
-    if (!investorProfile.data.signature) {
-      navigator.navigate("profile", "onboarding");
-      return;
-    }
+    // if (!investorProfile.data.signature) {
+    //   navigator.navigate("profile", "onboarding");
+    //   return;
+    // }
 
     if (authDetail.uccRegistered === Boolean(investorProfile.data?.client_code)) {
       return;
@@ -82,6 +83,7 @@ function Profile() {
           {profileTab === "5" ? <PasswordTab /> : null}
           {profileTab === "6" ? <RiskAssessmentsTab /> : null}
           {profileTab === "7" ? <CommunicationTab investorProfile={investorProfile.data} /> : null}
+          {profileTab === "8" ? <HolderTab investorProfile={investorProfile.data} /> : null}
         </>
       )}
     </ScrollView>

@@ -96,7 +96,7 @@ function PersonalDetails() {
 
       if (currStep === 2) {
         await postAddressApi({ investorId: undefined, payload }).unwrap();
-        navigator.replace("profile", "main");
+        navigator.replace("profile", "onboarding/holder-details");
       } else {
         await patchInvestorProfileApi({ investorId: undefined, payload }).unwrap();
         setCurrStep(currStep + 1);

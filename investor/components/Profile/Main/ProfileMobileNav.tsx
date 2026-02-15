@@ -45,6 +45,14 @@ function ProfileMobileNav() {
           />
 
           <Button
+            title="Holder Details"
+            style={{ paddingVertical: 4 }}
+            typographyProps={{ size: "1" }}
+            onPress={handleNavigation("profile", "main", "8")}
+            variant={profileTab === "8" ? "soft" : "outline"}
+          />
+
+          <Button
             title="Nominee"
             style={{ paddingVertical: 4 }}
             typographyProps={{ size: "1" }}

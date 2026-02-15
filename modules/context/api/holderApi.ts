@@ -3,14 +3,14 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { customBaseQuery } from "./baseApi";
 import { investorProfileApi } from "./investorProfileApi";
 
-export const relatedPartyApi = createApi({
-  reducerPath: "relatedPartyApi",
+export const holderApi = createApi({
+  reducerPath: "holderApi",
   baseQuery: customBaseQuery,
-  tagTypes: ["relatedParty"],
+  tagTypes: ["holder"],
   endpoints: (builder) => ({
-    postRelatedParty: builder.mutation({
+    postHolder: builder.mutation({
       query: ({ investorId, payload }) => ({
-        url: `/related_party${investorId ? `?investor_id=${investorId}` : ""}`,
+        url: `/holder${investorId ? `?investor_id=${investorId}` : ""}`,
         method: "POST",
         body: payload,
       }),
@@ -19,9 +19,9 @@ export const relatedPartyApi = createApi({
         dispatch(investorProfileApi.util.invalidateTags(["investorProfile"]));
       },
     }),
-    patchRelatedParty: builder.mutation({
+    patchHolder: builder.mutation({
       query: ({ id, payload }) => ({
-        url: `/related_party/${id}`,
+        url: `/holder/${id}`,
         method: "PATCH",
         body: payload,
       }),
@@ -33,4 +33,4 @@ export const relatedPartyApi = createApi({
   }),
 });
 
-export const { usePatchRelatedPartyMutation, usePostRelatedPartyMutation } = relatedPartyApi;
+export const { usePostHolderMutation, usePatchHolderMutation } = holderApi;

@@ -31,8 +31,7 @@ function OnBoarding() {
       targetScreen = "onboarding/personal-details";
     } else if (!isCompany && !investorProfile?.data?.income_slab) {
       targetScreen = "onboarding/personal-details";
-    }
-    else if (!isCompany && !investorProfile?.data?.pep_details) {
+    } else if (!isCompany && !investorProfile?.data?.pep_details) {
       targetScreen = "onboarding/personal-details";
       currStep = "1";
     } else if (!isCompany && !investorProfile?.data?.country_of_birth) {
@@ -44,6 +43,8 @@ function OnBoarding() {
     } else if (!investorProfile?.data.address) {
       targetScreen = "onboarding/personal-details";
       currStep = "2";
+    } else if (!investorProfile?.data?.holder || investorProfile?.data?.holder?.length === 0) {
+      targetScreen = "onboarding/holder-details";
     } else if (!isCompany && investorProfile?.data.related_party?.length === 0) {
       targetScreen = "onboarding/nominee-details";
     } else if (investorProfile?.data.bank_account?.length === 0) {
@@ -102,6 +103,20 @@ function OnBoarding() {
             )}
             <Padding width={16} />
             <Typography>Personal Profile</Typography>
+          </FlexRow>
+
+          <Padding height={16} />
+          <Divider />
+          <Padding height={16} />
+
+          <FlexRow alignItems="center">
+            {investorProfile?.data?.holder && investorProfile?.data?.holder?.length > 0 ? (
+              <AntDesign name="check-circle" size={20} color={themeColor.green[9]} />
+            ) : (
+              <AntDesign name="exclamation-circle" size={20} color={themeColor.yellow[10]} />
+            )}
+            <Padding width={16} />
+            <Typography>Holder Details</Typography>
           </FlexRow>
 
           <Padding height={16} />

@@ -30,7 +30,7 @@ import {
 } from "@niveshstar/ui";
 import { getNamesPart } from "@niveshstar/utils";
 
-const authBackground = Asset.fromModule(require("@niveshstar/assets/img/auth-background.webp")).uri;
+const authBackground = Asset.fromModule(require("@niveshstar/assets/img/pv-auth-background.png")).uri;
 
 const defaultValues = {
   name: "",

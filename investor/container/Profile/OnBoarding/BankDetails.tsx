@@ -64,7 +64,7 @@ function BankDetails() {
         }
 
         await postBankApi({ investorId: undefined, payload: payload.bank }).unwrap();
-        navigator.replace("profile", "main");
+        navigator.replace("profile", "onboarding/sign-details");
       } catch {
         //pass
       }

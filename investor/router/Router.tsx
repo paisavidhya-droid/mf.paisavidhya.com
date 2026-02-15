@@ -30,6 +30,7 @@ import PaymentSuccess from "../container/Payment/PaymentSuccess";
 import Plans from "../container/Plans/Plans";
 import BankDetails from "../container/Profile/OnBoarding/BankDetails";
 import CompanyDetails from "../container/Profile/OnBoarding/CompanyDetails";
+import HolderDetails from "../container/Profile/OnBoarding/HolderDetails";
 import NomineeDetails from "../container/Profile/OnBoarding/NomineeDetails";
 import OnBoarding from "../container/Profile/OnBoarding/OnBoarding";
 import PersonalDetails from "../container/Profile/OnBoarding/PersonalDetails";
@@ -135,6 +136,7 @@ export default function Router() {
 
             <Route path="/profile/onboarding" element={<OnBoarding />} />
             <Route path="/profile/onboarding/personal-details" element={<PersonalDetails />} />
+            <Route path="/profile/onboarding/holder-details" element={<HolderDetails />} />
             <Route path="/profile/onboarding/nominee-details" element={<NomineeDetails />} />
             <Route path="/profile/onboarding/bank-details" element={<BankDetails />} />
             <Route path="/profile/onboarding/company-details" element={<CompanyDetails />} />

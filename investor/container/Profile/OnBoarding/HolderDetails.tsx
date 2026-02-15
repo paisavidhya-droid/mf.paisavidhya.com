@@ -8,44 +8,41 @@ import {
   RootStateType,
   ThemeContext,
   useGetInvestorProfileQuery,
+  usePostHolderMutation,
   usePostIdentifierMutation,
-  usePostRelatedPartyMutation,
 } from "@niveshstar/context";
 import { useNavigation } from "@niveshstar/hook";
 import { Button, FlexRow, getInvestorPayload, Padding, Typography } from "@niveshstar/ui";
 import { getNamesPart } from "@niveshstar/utils";
 
-import NomineeQuestion from "../../../components/Profile/OnBoard/NomineeDetails/NomineeQuestion";
-import Progress from "../../../components/Profile/OnBoard/ProgressBar";
+import HolderQuestion from "../../../components/Profile/OnBoard/HolderDetails/HolderQuestion";
+import ProgressBar from "../../../components/Profile/OnBoard/ProgressBar";
 
 const defaultValues = {
-  nominee: {
+  holder: {
     name: "",
+    gender: { name: "", value: "" },
+    holder_rank: { name: "Second", value: "SECOND" },
     date_of_birth: "",
-    relationship: { name: "", value: "" },
-    nomination_percent: "100",
-    identity_type: { value: "", name: "" },
-    pan: "",
-    adhaar: "",
-    driving_license: "",
+    place_of_birth: "",
+    country_of_birth: { name: "", value: "" },
+    occupation: { name: "", value: "" },
+    source_of_wealth: { name: "", value: "" },
+    income_slab: { name: "", value: "" },
+    pep_details: { name: "", value: "" },
     email: "",
     mobile: "",
-    line1: "",
-    line2: "",
-    line3: "",
-    city: "",
-    state: { name: "", value: "" },
-    postal_code: "",
-    country: { name: "", value: "" },
+    identity_type: { value: "PAN", name: "Pan" },
+    pan: "",
   },
 };
 
-function NomineeDetails() {
+function HolderDetails() {
   const { navigator } = useNavigation();
   const { themeColor } = useContext(ThemeContext);
   const authDetail = useSelector((state: RootStateType) => state.auth);
 
-  const [postRelatedPartyApi, { isLoading: isPostingRelatedParty }] = usePostRelatedPartyMutation();
+  const [postHolderApi, { isLoading: isPostingHolder }] = usePostHolderMutation();
   const [postIdentifierApi, { isLoading: isPostingIdentifier }] = usePostIdentifierMutation();
 
   const { data: investorProfile = { data: null }, isLoading: isGettingInvestorProfile } = useGetInvestorProfileQuery(
@@ -55,44 +52,43 @@ function NomineeDetails() {
     }
   );
 
-  const { control, handleSubmit, watch, setValue } = useForm({
+  const { control, handleSubmit } = useForm({
     defaultValues: defaultValues,
     reValidateMode: "onSubmit",
   });
 
-  const identityType = watch("nominee.identity_type");
-
   const onSubmit = useCallback(
     async (data: typeof defaultValues) => {
       try {
-        const { first_name, middle_name, last_name } = getNamesPart(data.nominee.name);
+        const { first_name, middle_name, last_name } = getNamesPart(data.holder.name);
 
         //@ts-ignore
-        data.nominee.first_name = first_name;
+        data.holder.first_name = first_name;
         //@ts-ignore
-        data.nominee.middle_name = middle_name;
+        data.holder.middle_name = middle_name;
         //@ts-ignore
-        data.nominee.last_name = last_name;
+        data.holder.last_name = last_name;
 
-        const payload = await getInvestorPayload(data, "NOMINEE");
+        const payload = await getInvestorPayload(data, "HOLDER");
 
-        const res = await postRelatedPartyApi({ investorId: undefined, payload: payload.nominee }).unwrap();
+        const res = await postHolderApi(payload.holder).unwrap();
 
-        payload.identifier.related_party_id = res.data.id;
+        payload.identifier.holder_id = res.data.id;
         await postIdentifierApi({ investorId: undefined, payload: payload.identifier }).unwrap();
 
-        navigator.replace("profile", "onboarding/bank-details");
+        navigator.replace("profile", "onboarding/nominee-details");
       } catch {
-        //pass
+        // Handle error
       }
     },
-    [postRelatedPartyApi, navigator, postIdentifierApi]
+    [postHolderApi, postIdentifierApi, navigator]
   );
 
   return (
     <ScrollView contentContainerStyle={[styles.container, { backgroundColor: themeColor.gray[1] }]}>
       <View style={styles.wrapper}>
-        <Progress percent={80} />
+        <ProgressBar percent={60} />
+
         <Padding height={24} />
 
         {isGettingInvestorProfile ? (
@@ -105,35 +101,32 @@ function NomineeDetails() {
           <>
             <FlexRow justifyContent="space-between" alignItems="center">
               <Typography size="3" weight="medium">
-                Nominee Details
+                Holder Details
               </Typography>
               <Button
                 title="Skip"
                 variant="ghost"
-                onPress={() => navigator.replace("profile", "onboarding/bank-details")}
-                disabled={isPostingRelatedParty || isPostingIdentifier}
+                onPress={() => navigator.replace("profile", "onboarding/nominee-details")}
+                disabled={isPostingHolder}
               />
             </FlexRow>
+
             <Padding height={24} />
 
-            <NomineeQuestion
-              control={control}
-              setValue={setValue}
-              identityType={identityType}
-              data={investorProfile.data}
-            />
+            <HolderQuestion control={control} holders={investorProfile.data?.holder || []} />
+
             <Padding height={24} />
 
             <FlexRow justifyContent="center" colGap={16}>
               <Button disabled icon={<Entypo name="chevron-left" size={30} color={themeColor.accent[6]} />} />
               <Button
-                disabled={isPostingRelatedParty || isPostingIdentifier}
                 onPress={handleSubmit(onSubmit)}
+                disabled={isPostingIdentifier || isPostingHolder}
                 icon={
                   <Entypo
                     name="chevron-right"
                     size={30}
-                    color={isPostingRelatedParty || isPostingIdentifier ? themeColor.accent[6] : themeColor.gray[1]}
+                    color={isPostingIdentifier || isPostingHolder ? themeColor.accent[6] : themeColor.gray[1]}
                   />
                 }
               />
@@ -158,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default React.memo(NomineeDetails);
+export default React.memo(HolderDetails);

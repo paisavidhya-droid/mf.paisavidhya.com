@@ -15,7 +15,7 @@ import {
   stateOptions,
 } from "@niveshstar/constant";
 
-type UpdateType = "PERSONAL" | "ADDRESS" | "BANK" | "COMMUNICATION" | "NOMINEE";
+type UpdateType = "PERSONAL" | "ADDRESS" | "BANK" | "COMMUNICATION" | "NOMINEE" | "HOLDER";
 
 export const updateInvestorForm = (
   data: any,
@@ -168,6 +168,52 @@ export const updateInvestorForm = (
       setValue("bank_account.branch_name", bank.branch_name);
       setValue("bank_account.branch_address", bank.branch_address);
       setValue("bank_account.cancelled_cheque", bank.cancelled_cheque);
+    }
+  }
+
+  if (updateType === "HOLDER") {
+    const holder = data.holder && data.holder.length >= index ? data.holder[index] : null;
+    if (holder) {
+      setValue("holder.first_name", holder?.first_name);
+      setValue("holder.middle_name", holder?.middle_name || "");
+      setValue("holder.last_name", holder?.last_name);
+      setValue("holder.email", holder.email);
+      setValue("holder.mobile", holder.mobile);
+
+      const gender = genderOptions.filter((item) => item.value === holder.gender);
+      setValue("holder.gender", gender[0]);
+
+      const date_of_birth = holder.date_of_birth;
+      const dob = moment(date_of_birth).format("YYYY-MM-DD");
+      setValue("holder.date_of_birth", dob as any);
+
+      const occupation = occupationOptions.filter((item) => item.value === holder.occupation);
+      if (occupation.length) setValue("holder.occupation", occupation[0]);
+
+      const income_slab = incomeSlabOptions.filter((item) => item.value === holder.income_slab);
+      if (income_slab.length) setValue("holder.income_slab", income_slab[0]);
+
+      const source_of_wealth = sourceOfWealthOptions.filter((item) => item.value === holder.source_of_wealth);
+      if (source_of_wealth.length) setValue("holder.source_of_wealth", source_of_wealth[0]);
+
+      setValue("holder.place_of_birth", holder.place_of_birth);
+
+      const country_of_birth = countryOptions.filter((item) => item.value === holder.country_of_birth);
+      if (country_of_birth.length) setValue("holder.country_of_birth", country_of_birth[0]);
+
+      const pep_details = pepDetailsOptions.filter((item) => item.value === holder.pep_details);
+      if (pep_details.length) setValue("holder.pep_details", pep_details[0]);
+
+      if (holder.identifier && holder.identifier.length) {
+        const identifier = holder.identifier[0];
+        const holderIdType = nomineeIdentityTypeOptions.filter((item) => item.value === identifier.identifier_type);
+        if (holderIdType.length) setValue("nominee.identity_type", holderIdType[0]);
+
+        if (identifier.identifier_type === "PAN") setValue("holder.pan", identifier.identifier_number);
+        if (identifier.identifier_type === "AADHAR_CARD") setValue("holder.adhaar", identifier.identifier_number);
+        if (identifier.identifier_type === "DRIVING_LICENSE")
+          setValue("holder.driving_license", identifier.identifier_number);
+      }
     }
   }
 };

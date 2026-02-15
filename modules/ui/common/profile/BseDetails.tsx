@@ -6,10 +6,10 @@ import { colors } from "@niveshstar/constant";
 import {
   RootStateType,
   ThemeContext,
-  useGetCreatePhysicalUccMutation,
   useGetUploadAofMutation,
   useLazyGetInvestorBseDetailsQuery,
   useLazyGetKycLinkQuery,
+  usePostCreatePhysicalUccMutation,
 } from "@niveshstar/context";
 import { useNavigation } from "@niveshstar/hook";
 
@@ -45,17 +45,17 @@ function BseDetails(props: PropsType) {
 
   const [getKycLinkApi, { isLoading: isGettingKycLink }] = useLazyGetKycLinkQuery();
   const [getUploadAofApi, { isLoading: isGettingUploadAof }] = useGetUploadAofMutation();
-  const [getCreatePhysicalUccApi, { isLoading: isGettingCreatePhysicalUcc }] = useGetCreatePhysicalUccMutation();
+  const [postCreatePhysicalUccApi, { isLoading: isGettingCreatePhysicalUcc }] = usePostCreatePhysicalUccMutation();
   const [getUccStatusApi, { isLoading: isGettingUccData, data: uccData, error: uccError }] =
     useLazyGetInvestorBseDetailsQuery();
 
   const retryInvestmentAcc = useCallback(async () => {
     try {
-      await getCreatePhysicalUccApi(params?.investorId ?? undefined).unwrap();
+      await postCreatePhysicalUccApi(params?.investorId ?? undefined).unwrap();
     } catch {
       //pass
     }
-  }, [getCreatePhysicalUccApi, params]);
+  }, [postCreatePhysicalUccApi, params]);
 
   const retryAofUpload = useCallback(async () => {
     try {
@@ -119,38 +119,47 @@ function BseDetails(props: PropsType) {
             style={{ paddingVertical: 0 }}
             onPress={() => Linking.openURL(profile.aof)}
           />
-        ) : profile.client_code ? (
+        ) : (
+          <Typography size={textSize}>Not Created</Typography>
+        )}
+      </FlexRow>
+      <Padding height={8} />
+
+      {!profile.aof && profile.client_code ? (
+        <>
           <Button
-            title="Retry"
-            variant="link"
-            style={{ paddingVertical: 0 }}
+            title="Retry AOF Upload"
+            variant="soft"
             onPress={retryAofUpload}
             disabled={isGettingUploadAof}
             loading={isGettingUploadAof}
           />
-        ) : null}
-      </FlexRow>
-      <Padding height={8} />
+          <Padding height={16} />
+        </>
+      ) : null}
 
       <FlexRow>
         <Typography color={themeColor.gray[11]} weight="medium" size={textSize}>
           UCC Status:&nbsp;
         </Typography>
-        <Typography size={textSize}>{profile?.client_code ? "Active" : "-"}</Typography>
-        {!profile?.client_code ? (
+        <Typography size={textSize}>{profile?.ucc_status}</Typography>
+      </FlexRow>
+      <Padding height={8} />
+
+      {!profile?.client_code ? (
+        <>
           <Button
-            title="Retry"
-            variant="link"
-            style={{ paddingVertical: 0 }}
+            title="Retry UCC Creation"
+            variant="soft"
             onPress={retryInvestmentAcc}
             disabled={isGettingCreatePhysicalUcc}
             loading={isGettingCreatePhysicalUcc}
           />
-        ) : null}
-      </FlexRow>
-      <Padding height={8} />
+          <Padding height={16} />
+        </>
+      ) : null}
 
-      {profile?.signature && (
+      {profile?.signature ? (
         <>
           <FlexRow>
             <Typography color={themeColor.gray[11]} weight="medium" size={textSize}>
@@ -160,7 +169,7 @@ function BseDetails(props: PropsType) {
           </FlexRow>
           <Padding height={8} />
         </>
-      )}
+      ) : null}
 
       {profile.client_code ? (
         <>
